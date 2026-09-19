@@ -52,7 +52,9 @@ def install_and_restart():
             "vocos"
         ])
         
-        # Then install F5-TTS
+        req_path = Path(__file__).parent.parent.parent / "requirements" / "requirements_f5tts.txt"
+        
+        # Then install F5-TTS requirements
         print("Installing F5-TTS...")
         subprocess.check_call([
             sys.executable, 
@@ -60,8 +62,17 @@ def install_and_restart():
             "pip", 
             "install", 
             "-r",
-            "../requirements/requirements_f5.txt"
+            str(req_path)
         ])
+
+        # Then install F5-TTS without dependencies
+        print("Installing F5-TTS package (no-deps)...")
+        subprocess.check_call([
+            sys.executable,
+            "-m", "pip",
+            "install",
+            "--no-deps",
+            "git+https://github.com/SWivid/F5-TTS.git"])
         
         print("##############################################################")
         print("All packages installed successfully! Restarting application...")
