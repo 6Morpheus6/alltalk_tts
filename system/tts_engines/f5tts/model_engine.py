@@ -59,7 +59,8 @@ def install_and_restart():
             "-m", 
             "pip", 
             "install", 
-            "git+https://github.com/SWivid/F5-TTS.git"
+            "-r",
+            "../requirements/requirements_f5.txt"
         ])
         
         print("##############################################################")
